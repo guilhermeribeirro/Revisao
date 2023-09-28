@@ -1,0 +1,16 @@
+[
+  {
+    "Codigo": 0,
+    "Nome": "Guilherme",
+    "EnderecoCompleto": "Rua Lazaro Caixeta, 90, Araxá, Minas Gerais ",
+    "Idade": 7,
+    "TextoCarta": "Eu gostaria de ganhar um celular novo"
+  },
+  {
+    "Codigo": 1,
+    "Nome": "string",
+    "EnderecoCompleto": "string",
+    "Idade": 8,
+    "TextoCarta": "string"
+  }
+]
