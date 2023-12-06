@@ -33,7 +33,7 @@ namespace Revisao.Data.Repositories
             await _papainoelRepository.InsertOneAsync(_mapper.Map<PapaiNoelCollection>(papainoel));
         }
 
-
+        
         public void Atualizar(PapaiNoel papainoel)
         {
             throw new NotImplementedException();

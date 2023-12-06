@@ -6,20 +6,24 @@ using System.Threading.Tasks;
 
 namespace Revisao.Data.Providers.MongoDb.Collections
 {
-    public class PapaiNoelCollection
-    {
+   
 
-  public Guid CodigoId { get; set; }
- public string Nome { get; set; }
+        [BsonCollection("PapaiNoel")]
+        public class PapaiNoelCollection : Document
+        {
+        public Guid CodigoId { get;  set; }
 
-    public string EnderecoCompleto { get; set; }
+        public string Nome { get; set; }
+        
+        public string EnderecoCompleto { get; set; }
 
 
-    public int Idade { get; set; }
+        public int Idade { get; set; }
 
 
-    public string TextoCarta { get; set; }
+        public string TextoCarta { get;  set; }
+    }
+
 
     
-    }
 }

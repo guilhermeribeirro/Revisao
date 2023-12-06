@@ -10,6 +10,8 @@ using Revisao.Data.Providers.MongoDb.Interfaces;
 using Revisao.Data.Repositories;
 using Revisao.Application.Interfaces;
 using Revisao.Application.Services;
+using Newtonsoft.Json.Linq;
+using Revisao.Data.Providers.MongoDb.Collections;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,9 +38,11 @@ builder.Services.AddScoped<IPapaiNoelService, PapaiNoelService>();
 
 
 
+
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipeli
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
