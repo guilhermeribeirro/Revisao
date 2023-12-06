@@ -16,10 +16,10 @@ namespace Revisao.Application.AutoMapper
             
 
             CreateMap<PapaiNoelViewModel, PapaiNoel>()
-               .ConstructUsing(q => new PapaiNoel(q.Codigo, q.Nome, q.EnderecoCompleto, q.Idade, q.TextoCarta));
+               .ConstructUsing(q => new PapaiNoel(q.CodigoId, q.Nome, q.EnderecoCompleto, q.Idade, q.TextoCarta));
 
             CreateMap<NovoPapaiNoelViewModel, PapaiNoel>()
-               .ConstructUsing(q => new PapaiNoel(q.Codigo, q.Nome, q.EnderecoCompleto, q.Idade, q.TextoCarta));
+               .ConstructUsing(q => new PapaiNoel(q.CodigoId, q.Nome, q.EnderecoCompleto, q.Idade, q.TextoCarta));
 
         }
     }

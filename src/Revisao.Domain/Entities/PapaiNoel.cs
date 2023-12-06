@@ -11,9 +11,9 @@ namespace Revisao.Domain.Entities
     {
         #region 1 - Contrutores
         [JsonConstructor]
-        public PapaiNoel(int proximoCodigo, string nome, string enderecoCompleto, int idade, string textoCarta)
+        public PapaiNoel(Guid proximoCodigo, string nome, string enderecoCompleto, int idade, string textoCarta)
         {
-            Codigo = proximoCodigo;
+            CodigoId = proximoCodigo;
             Nome = nome;
             EnderecoCompleto = enderecoCompleto;
             Idade = idade;
@@ -43,7 +43,7 @@ namespace Revisao.Domain.Entities
         #region 2 - Propriedades
 
 
-        public int Codigo { get; private set; } 
+        public Guid CodigoId { get; private set; } 
         public string Nome { get; private set; }
 
         public string EnderecoCompleto { get; private set; }
@@ -70,7 +70,7 @@ namespace Revisao.Domain.Entities
         public void AlterarEndereco(string enderecoCompleto) => EnderecoCompleto = EnderecoCompleto;
 
 
-        public void SetaCodigoPapaiNoel(int novocodigo) => Codigo = novocodigo;
+        public void SetaCodigoPapaiNoel(Guid novocodigo) => CodigoId = novocodigo;
 
         #endregion
 

@@ -8,7 +8,7 @@ namespace Revisao.Catalogo.Application.ViewModels
 {
     public class PapaiNoelViewModel
     {
-        public int Codigo { get;  set; }
+        public Guid CodigoId { get;  set; }
         public string Nome { get;  set; }
 
         public string EnderecoCompleto { get;  set; }

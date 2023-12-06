@@ -25,10 +25,10 @@ namespace Revisao.Application.Services
         #endregion
 
         #region - Funções
-        public void Adicionar(NovoPapaiNoelViewModel novopapainoelViewModel)
+        public async void Adicionar(NovoPapaiNoelViewModel novopapainoelViewModel)
         {
             var novopapainoel = _mapper.Map<PapaiNoel>(novopapainoelViewModel);
-            _cartaRepository.Adicionar(novopapainoel);
+           await _cartaRepository.Adicionar(novopapainoel);
 
         }
 
@@ -46,10 +46,10 @@ namespace Revisao.Application.Services
         {
             throw new NotImplementedException();
         }
-
         public IEnumerable<PapaiNoelViewModel> ObterTodos()
         {
             return _mapper.Map<IEnumerable<PapaiNoelViewModel>>(_cartaRepository.ObterTodos());
+
         }
         #endregion
     }

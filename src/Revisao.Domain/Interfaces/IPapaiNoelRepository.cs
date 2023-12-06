@@ -1,4 +1,5 @@
 ﻿using Revisao.Domain.Entities;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,9 @@ namespace Revisao.Data.Repositories
 
         IEnumerable<PapaiNoel> ObterTodos();
         Task<PapaiNoel> ObterPorId(Guid id);
-        Task<IEnumerable<PapaiNoel>> ObterPorCategoria(int proximoCodigo);
-
-        void Adicionar(PapaiNoel papainoel);
+       
+        Task Adicionar(PapaiNoel papainoel);
+        
         void Atualizar(PapaiNoel papainoel);
 
 

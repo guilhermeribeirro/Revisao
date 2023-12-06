@@ -1,4 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using AutoMapper;
+using Newtonsoft.Json;
+using Revisao.Data.Providers.MongoDb.Collections;
+using Revisao.Data.Providers.MongoDb.Interfaces;
 using Revisao.Domain.Entities;
 
 using System;
@@ -6,77 +9,64 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 
 namespace Revisao.Data.Repositories
 {
     public class PapaiNoelRepository : IPapaiNoelRepository
     {
-        private readonly string _cartaCaminhoArquivo;
+        private readonly IMongoRepository<PapaiNoelCollection> _papainoelRepository;
+        private readonly IMapper _mapper;
 
-        #region - Construtores
-        public PapaiNoelRepository()
+
+        public PapaiNoelRepository(IMongoRepository<PapaiNoelCollection> papainoelRepository, IMapper mapper)
         {
-            _cartaCaminhoArquivo = Path.Combine(Directory.GetCurrentDirectory(), "FileJsonData", "PapaiNoel.json");
+            _papainoelRepository = papainoelRepository;
+            _mapper = mapper;
         }
-
-        #endregion
 
         #region - Funções
-        public void Adicionar(PapaiNoel papainoel)
+
+        public async Task Adicionar(PapaiNoel  papainoel)
         {
-            var papainoels = LerCartasDoArquivo();
-            int proximoCodigo = ObterProximoCodigoDisponivel();
-            papainoel.SetaCodigoPapaiNoel(proximoCodigo);
-            papainoels.Add(papainoel);
-            EscreverCartasNoArquivo(papainoels);
+            await _papainoelRepository.InsertOneAsync(_mapper.Map<PapaiNoelCollection>(papainoel));
         }
+
 
         public void Atualizar(PapaiNoel papainoel)
         {
             throw new NotImplementedException();
         }
 
+
+
         public Task<IEnumerable<PapaiNoel>> ObterPorCategoria(int proximoCodigo)
         {
             throw new NotImplementedException();
         }
 
-        public Task<PapaiNoel> ObterPorId(Guid id)
+
+
+        public async Task<PapaiNoel> ObterPorId(Guid id)
         {
-            throw new NotImplementedException();
+            var buscaCategoria = _papainoelRepository.FilterBy(filter => filter.CodigoId == id);
+
+            return _mapper.Map<PapaiNoel>(buscaCategoria.FirstOrDefault());
+
         }
+
+
 
         public IEnumerable<PapaiNoel> ObterTodos()
         {
-            return LerCartasDoArquivo();
+            var categoriaList = _papainoelRepository.FilterBy(filter => true);
+
+            return _mapper.Map<IEnumerable<PapaiNoel>>(categoriaList);
         }
         #endregion
 
-        #region - Métodos arquivo
-        private List<PapaiNoel> LerCartasDoArquivo()
-        {
-            if (!System.IO.File.Exists(_cartaCaminhoArquivo))
-                return new List<PapaiNoel>();
-            string json = System.IO.File.ReadAllText(_cartaCaminhoArquivo);
-            return JsonConvert.DeserializeObject<List<PapaiNoel>>(json);
-        }
 
-        private int ObterProximoCodigoDisponivel()
-        {
-            List<PapaiNoel> papainoels = LerCartasDoArquivo();
-            if (papainoels.Any())
-                return papainoels.Max(p => p.Codigo) + 1;
-            else
-                return 1;
-        }
-
-        private void EscreverCartasNoArquivo(List<PapaiNoel> produtos)
-        {
-            string json = JsonConvert.SerializeObject(produtos);
-            System.IO.File.WriteAllText(_cartaCaminhoArquivo, json);
-        }
-        #endregion
 
 
     }
