@@ -47,13 +47,13 @@ namespace Revisao.Catalogo.API.Controllers
         }
 
 
-        [HttpPost]
-        public async Task<IActionResult> Autenticar(AutenticacaoPapaiNoelViewModel autenticacaopapaioViewModel)
-        {
-            var token = await _papainoelService.Autenticar(autenticacaopapaioViewModel);
+        //[HttpPost]
+        //public async Task<IActionResult> Autenticar(AutenticacaoPapaiNoelViewModel autenticacaopapaioViewModel)
+        //{
+        //    var token = await _papainoelService.Autenticar(autenticacaopapaioViewModel);
 
-            return Ok(token);
-        }
+        //    return Ok(token);
+        //}
 
 
 
