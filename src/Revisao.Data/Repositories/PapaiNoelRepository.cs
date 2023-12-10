@@ -3,14 +3,14 @@ using Newtonsoft.Json;
 using Revisao.Data.Providers.MongoDb.Collections;
 using Revisao.Data.Providers.MongoDb.Interfaces;
 using Revisao.Domain.Entities;
-
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-
+using Revisao.Domain.Interfaces;
 
 namespace Revisao.Data.Repositories
 {
@@ -28,9 +28,24 @@ namespace Revisao.Data.Repositories
 
         #region - Funções
 
+
+        public async Task<PapaiNoel> Autenticar(string login, string senha)
+        {
+            var papainoelCollection = await _papainoelRepository.FindOneAsync(filtro =>
+                        filtro.Login == login && filtro.Senha == senha);
+            return _mapper.Map<PapaiNoel>(papainoelCollection);
+
+
+        }
+
+
+
+
+
+
         public async Task Adicionar(PapaiNoel  papainoel)
         {
-            await _papainoelRepository.InsertOneAsync(_mapper.Map<PapaiNoelCollection>(papainoel));
+            await  _papainoelRepository.InsertOneAsync(_mapper.Map<PapaiNoelCollection>(papainoel));
         }
 
         
@@ -60,9 +75,9 @@ namespace Revisao.Data.Repositories
 
         public IEnumerable<PapaiNoel> ObterTodos()
         {
-            var categoriaList = _papainoelRepository.FilterBy(filter => true);
+            var papainoelList = _papainoelRepository.FilterBy(filter => true);
 
-            return _mapper.Map<IEnumerable<PapaiNoel>>(categoriaList);
+            return _mapper.Map<IEnumerable<PapaiNoel>>(papainoelList);
         }
         #endregion
 

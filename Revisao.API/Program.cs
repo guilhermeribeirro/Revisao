@@ -12,6 +12,9 @@ using Revisao.Application.Interfaces;
 using Revisao.Application.Services;
 using Newtonsoft.Json.Linq;
 using Revisao.Data.Providers.MongoDb.Collections;
+using Revisao.Domain.Interfaces;
+using Revisao.Infra.Autenticacao.Models;
+using Revisao.Infra.Autenticacao;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,8 +39,10 @@ builder.Services.AddScoped(typeof(IMongoRepository<>), typeof(MongoRepository<>)
 builder.Services.AddScoped<IPapaiNoelRepository, PapaiNoelRepository>();
 builder.Services.AddScoped<IPapaiNoelService, PapaiNoelService>();
 
+builder.Services.Configure<Token>(
+    builder.Configuration.GetSection("token"));
 
-
+builder.Services.AddScoped<ITokenService, TokenService>();
 
 
 var app = builder.Build();

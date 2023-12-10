@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Revisao.Infra\Revisao.Infra.csproj" />
     <ProjectReference Include="..\Revisao.Data\Revisao.Data.csproj" />
     <ProjectReference Include="..\Revisao.Domain\Revisao.Domain.csproj" />
   </ItemGroup>

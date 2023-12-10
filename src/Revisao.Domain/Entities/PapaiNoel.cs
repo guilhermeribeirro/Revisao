@@ -7,10 +7,22 @@ using System.Threading.Tasks;
 
 namespace Revisao.Domain.Entities
 {
-    public class PapaiNoel
+    public class PapaiNoel : EntidadeBase
+
     {
         #region 1 - Contrutores
-        [JsonConstructor]
+     
+        public PapaiNoel(string nome, string enderecoCompleto, int idade, string textoCarta)
+        {
+           
+            Nome = nome;
+            EnderecoCompleto = enderecoCompleto;
+            Idade = idade;
+            TextoCarta = textoCarta;
+
+
+        }
+
         public PapaiNoel(Guid proximoCodigo, string nome, string enderecoCompleto, int idade, string textoCarta)
         {
             CodigoId = proximoCodigo;
@@ -21,19 +33,6 @@ namespace Revisao.Domain.Entities
 
 
         }
-        //[JsonConstructor]
-        //public PapaiNoel(int proximoCodigo, string nome, string enderecoCompleto, int idade, string textoCarta)
-        //{
-        //    Codigo = proximoCodigo;
-        //    Nome = nome;
-        //    EnderecoCompleto = enderecoCompleto;
-        //    Idade = idade;
-        //    TextoCarta = textoCarta;
-
-
-        //}
-
-
 
 
 
@@ -43,7 +42,7 @@ namespace Revisao.Domain.Entities
         #region 2 - Propriedades
 
 
-        public Guid CodigoId { get; private set; } 
+     
         public string Nome { get; private set; }
 
         public string EnderecoCompleto { get; private set; }

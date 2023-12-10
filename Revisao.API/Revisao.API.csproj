@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Revisao.Infra\Revisao.Infra.csproj" />
     <ProjectReference Include="..\src\Revisao.Application\Revisao.Application.csproj" />
   </ItemGroup>
 

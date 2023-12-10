@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Revisao.Data.Repositories
+namespace Revisao.Domain.Interfaces
 {
     public interface IPapaiNoelRepository
     {
-
+        public Task<PapaiNoel> Autenticar(string login, string senha);
         IEnumerable<PapaiNoel> ObterTodos();
         Task<PapaiNoel> ObterPorId(Guid id);
        
